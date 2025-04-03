@@ -1,10 +1,15 @@
-﻿namespace GenSpil
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace GenSpil
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 66a866f0bd9b6331c40b90bb6bbb60efc2232420
             bool displayMenu = true;
             while (displayMenu)
             {
@@ -32,6 +37,7 @@
                     switch (subChoice)
                     {
                         case 1:
+<<<<<<< HEAD
                             Item.AddGame();
                             break;
                         case 2:
@@ -43,6 +49,19 @@
                         case 4:
                             Console.WriteLine("Liste over spil:");
                             foreach (var game in Item.Games)
+=======
+                            Spil.AddGame();
+                            break;
+                        case 2:
+                            Spil.EditGame();
+                            break;
+                        case 3:
+                            Spil.RemoveGame();
+                            break;
+                        case 4:
+                            Console.WriteLine("Liste over spil:");
+                            foreach (var game in Spil.Games)
+>>>>>>> 66a866f0bd9b6331c40b90bb6bbb60efc2232420
                             {
                                 Console.WriteLine($"Spilnavn: {game.Name}, Version: {game.Version}, Stand: {game.Condition}, Antal på lager: {game.InStock}, Antal spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}");
                             }
@@ -59,6 +78,7 @@
                     switch (subChoice)
                     {
                         case 1:
+<<<<<<< HEAD
                             Customer.AddCustomer();
                             break;
                         case 2:
@@ -70,6 +90,19 @@
                         case 4:
                             Console.WriteLine("Liste over kunder:");
                             foreach (var customer in Customer.Customers)
+=======
+                            Kunde.AddCustomer();
+                            break;
+                        case 2:
+                            Kunde.EditCustomer();
+                            break;
+                        case 3:
+                            Kunde.RemoveCustomer();
+                            break;
+                        case 4:
+                            Console.WriteLine("Liste over kunder:");
+                            foreach (var customer in Kunde.Customers)
+>>>>>>> 66a866f0bd9b6331c40b90bb6bbb60efc2232420
                             {
                                 Console.WriteLine($"Navn: {customer.Name}, Kunde ID: {customer.CustomerId}, Telefonnummer: {customer.PhoneNumber}, Email: {customer.Email}");
                             }
@@ -124,7 +157,10 @@
         public static void Employees()
         {
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 66a866f0bd9b6331c40b90bb6bbb60efc2232420
         }
     }
 }
