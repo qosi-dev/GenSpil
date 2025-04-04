@@ -51,7 +51,7 @@ namespace GenSpil
                 Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
             }
         }
-        public void SearchGame()
+        public static void SearchGame()
         {
             Console.WriteLine("1. Søg efter navn: ");
             Console.WriteLine("2. Søg efter id: ");
