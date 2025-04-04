@@ -72,5 +72,23 @@ namespace GenSpil
             Inquiry inquiry = new Inquiry(itemName, version, condition, requestedBy, inquiryDate);
             Storage.inquiries.Add(inquiry);
         }
+        public static void RemoveInquiry()
+        {
+            if (Storage.inquiries.Count == 0)
+            {
+                Console.WriteLine("Ingen forespørgsler tilgængelige.");
+                return;
+            }
+            else
+            {
+                Storage.inquiries.Sort();
+                foreach (Inquiry inquiry in Storage.inquiries)
+                {
+                    Console.WriteLine($"Navn: {inquiry.ItemName}, Version: {inquiry.Version}, Id: {inquiry.InquiryId}, Stand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
+                }
+                Console.WriteLine("Hvilket spil vil du fjerne(1..): ");
+                Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
+            }
+        }        
     }
 }

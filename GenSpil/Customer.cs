@@ -78,7 +78,6 @@ namespace GenSpil
                 
         //
         public static List<Customer> Customers = new List<Customer>();
-
         // Methods
         public static void CreateCustomer()
         {
@@ -100,28 +99,91 @@ namespace GenSpil
 
             Customers.Add(new Customer(name, customerId, address, postalCode, city, phoneNumber, email, CustomerCreated));
         }
+
         public static void RemoveCustomer()
         {
             {
                 if (Customers.Count == 0)
                 {
-                    Console.WriteLine("Ingen kunder tilføjet.");
+                    Console.WriteLine("Ingen kunder fundet.");
                     return;
                 }
                 else
                 {
-                    foreach (Customer customer in Customers)
-                    {
-                        Console.WriteLine($"Navn: {customer.Name}, ID: {customer.CustomerId}, Adresse: {customer.Address}, Postnr.: {customer.PostalCode}, By: {customer.City}, Telefon: {customer.PhoneNumber}, Email: {customer.Email}, Oprettet: {customer.CustomerCreated}");
-                    }
+                    GetCustomerDetails();
                     Console.WriteLine("Hvilken kunde vil du fjerne: ");
-                    Customers.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
+                    Customers.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1); // input 0 crash system
                 }
             }
         }
         public static void GetCustomerDetails()
         {
-
+            int index = 0;
+            
+            foreach (Customer customer in Customers)
+            {
+                index++;
+                Console.WriteLine($"{index}. Navn: {customer.Name}, ID: {customer.CustomerId}, Adresse: {customer.Address}, Postnr.: {customer.PostalCode}, By: {customer.City}, Telefon: {customer.PhoneNumber}, Email: {customer.Email}, Oprettet: {customer.CustomerCreated}");
+            }
+        }
+        public static void SearchCustomers()
+        {
+            bool subChoice = false;
+            if (subChoice == false)
+            {
+                subChoice = true;
+                while (subChoice = true)
+                {
+                    Console.WriteLine("1. Søg med navn");
+                    Console.WriteLine("2. Søg med kundeid");
+                    Console.WriteLine("3. Tilbage");
+                    int i = Convert.ToInt32(Console.ReadLine());
+                    if (i == 1)
+                    {
+                        Console.WriteLine("Indtast kundens navn: ");
+                        string name = Console.ReadLine();
+                        var itemFound = Customers.Where(customer => customer.Name == name).ToList();
+                        if (itemFound.Count > 0)
+                        {
+                            foreach (Customer customer in itemFound)
+                            {
+                                GetCustomerDetails();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ingen kunde fundet!");
+                        }
+                    }
+                    else if (i == 2)
+                    {
+                        Console.WriteLine("Indtast kundens id: ");
+                        int id = Convert.ToInt32(Console.ReadLine());
+                        var itemFound = Customers.Where(customer => customer.CustomerId == id).ToList();
+                        if (itemFound.Count > 0)
+                        {
+                            foreach (Customer customer in itemFound)
+                            {
+                                GetCustomerDetails();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ingen kunde fundet!");
+                        }
+                    }
+                    else if (i == 3)
+                    {
+                        subChoice = false;
+                        break;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            
         }
     }
 }
