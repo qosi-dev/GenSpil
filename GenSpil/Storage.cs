@@ -21,7 +21,6 @@ namespace GenSpil
             Console.WriteLine("Indtast spillets id: ");
             int itemId = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Indtast spillets stand: ");
-            Console.WriteLine("Indtast spillets stand: ");
             string condition = Console.ReadLine();
             Console.WriteLine("Indtast antal på lager: ");
             int inStock = Convert.ToInt32(Console.ReadLine());

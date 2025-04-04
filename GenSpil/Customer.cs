@@ -119,5 +119,9 @@ namespace GenSpil
                 }
             }
         }
+        public static void GetCustomerDetails()
+        {
+
+        }
     }
 }
