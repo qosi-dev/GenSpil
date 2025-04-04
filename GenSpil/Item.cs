@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GenSpil
 {
@@ -71,7 +72,7 @@ namespace GenSpil
         {
             _name = name;
             _version = version;
-            _itemId = ItemId;
+            _itemId = itemId;
             _condition = condition;
             _inStock = inStock;
             _players = players;
@@ -80,9 +81,6 @@ namespace GenSpil
             _itemStatus = itemStatus;
         }
 
-        //
-        public static List<Item> Games = new List<Item>();
-
         // Methods
         public static void AddItem()
         {
@@ -90,8 +88,9 @@ namespace GenSpil
             string name = Console.ReadLine();
             Console.WriteLine("Indtast spillets version: ");
             string version = Console.ReadLine();
-            Console.WriteLine("Indtast spillets stand: ");
+            Console.WriteLine("Indtast spillets id: ");
             int itemId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Indtast spillets stand: ");
             Console.WriteLine("Indtast spillets stand: ");
             string condition = Console.ReadLine();
             Console.WriteLine("Indtast antal på lager: ");
@@ -104,26 +103,45 @@ namespace GenSpil
             int price = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Indtast status: ");
             string itemStatus = Console.ReadLine();
-            Games.Add(new Item(name, version, itemId, condition, inStock, players, yearReleased, price, itemStatus));
+            Storage.Games.Add(new Item(name, version, itemId, condition, inStock, players, yearReleased, price, itemStatus));
         }
 
         public static void RemoveItem()
         {
-            if (Games.Count == 0)
+            if (Storage.Games.Count == 0)
             {
                 Console.WriteLine("Ingen spil tilgængelige.");
                 return;
             }
             else
             {
-                foreach (Item game in Games)
+                foreach (Item game in Storage.Games)
+                {
+                    ViewItem(game.ItemId);
+                }
+                Console.WriteLine("Hvilket spil vil du fjerne: ");
+                Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
+            }
+        }
+        public static void ViewItem(int id)
+        {
+            Console.WriteLine("Indtast spillets id: ");
+            id = Convert.ToInt32(Console.ReadLine());
+            var itemFound = Storage.Games.Where(game => game.ItemId == id).ToList();
+            if (itemFound.Count > 0)
+            {
+                Console.WriteLine("Spil fundet!");
+                foreach (Item game in itemFound)
                 {
                     Console.WriteLine($"Spil: {game.Name}, Version: {game.Version}, ID: {game.ItemId}, Tilstand: {game.Condition}, På lager: {game.InStock}, Antal Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}");
                 }
-                Console.WriteLine("Hvilket spil vil du fjerne: ");
-                Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
+            }
+            else
+            {
+                Console.WriteLine("Spillet kunne ikke findes.");
             }
         }
 
+        
     }
 }
