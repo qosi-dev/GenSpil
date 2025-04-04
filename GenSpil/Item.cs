@@ -82,47 +82,6 @@ namespace GenSpil
         }
 
         // Methods
-        public static void AddItem()
-        {
-            Console.WriteLine("Indtast spillets navn: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Indtast spillets version: ");
-            string version = Console.ReadLine();
-            Console.WriteLine("Indtast spillets id: ");
-            int itemId = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Indtast spillets stand: ");
-            Console.WriteLine("Indtast spillets stand: ");
-            string condition = Console.ReadLine();
-            Console.WriteLine("Indtast antal på lager: ");
-            int inStock = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Indtast antal spillere: ");
-            int players = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Indtast udgivelsesår: ");
-            int yearReleased = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Indtast pris: ");
-            int price = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Indtast status: ");
-            string itemStatus = Console.ReadLine();
-            Storage.Games.Add(new Item(name, version, itemId, condition, inStock, players, yearReleased, price, itemStatus));
-        }
-
-        public static void RemoveItem()
-        {
-            if (Storage.Games.Count == 0)
-            {
-                Console.WriteLine("Ingen spil tilgængelige.");
-                return;
-            }
-            else
-            {
-                foreach (Item game in Storage.Games)
-                {
-                    ViewItem(game.ItemId);
-                }
-                Console.WriteLine("Hvilket spil vil du fjerne: ");
-                Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
-            }
-        }
         public static void ViewItem(int id)
         {
             Console.WriteLine("Indtast spillets id: ");
@@ -141,7 +100,25 @@ namespace GenSpil
                 Console.WriteLine("Spillet kunne ikke findes.");
             }
         }
+        public static void ViewItem(string name)
+        {
+            Console.WriteLine("Indtast spillets id: ");
+            name = Console.ReadLine();
+            var itemFound = Storage.Games.Where(game => game.Name == name).ToList();
+            if (itemFound.Count > 0)
+            {
+                Console.WriteLine("Spil fundet!");
+                foreach (Item game in itemFound)
+                {
+                    Console.WriteLine($"Spil: {game.Name}, Version: {game.Version}, ID: {game.ItemId}, Tilstand: {game.Condition}, På lager: {game.InStock}, Antal Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Spillet kunne ikke findes. Har du indtastet de korrekte oplysninger?");
+            }
+        }
 
-        
+
     }
 }

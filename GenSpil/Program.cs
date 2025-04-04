@@ -38,7 +38,7 @@ namespace GenSpil
                     Storage.RemoveItem();
                     break;
                 case 4:
-
+                    Storage.SearchGame();
                     break;
                 case 5:
 
