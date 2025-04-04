@@ -80,11 +80,6 @@ namespace GenSpil
         public static List<Customer> Customers = new List<Customer>();
 
         // Methods
-        public static void GetCustomerId()
-        {
-            
-        }
-
         public static void CreateCustomer()
         {
             Console.WriteLine("Indtast kundens navn: ");
@@ -107,7 +102,22 @@ namespace GenSpil
         }
         public static void RemoveCustomer()
         {
-
+            {
+                if (Customers.Count == 0)
+                {
+                    Console.WriteLine("Ingen kunder tilføjet.");
+                    return;
+                }
+                else
+                {
+                    foreach (Customer customer in Customers)
+                    {
+                        Console.WriteLine($"Navn: {customer.Name}, ID: {customer.CustomerId}, Adresse: {customer.Address}, Postnr.: {customer.PostalCode}, By: {customer.City}, Telefon: {customer.PhoneNumber}, Email: {customer.Email}, Oprettet: {customer.CustomerCreated}");
+                    }
+                    Console.WriteLine("Hvilken kunde vil du fjerne: ");
+                    Customers.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
+                }
+            }
         }
     }
 }
