@@ -16,7 +16,7 @@ namespace GenSpil
         private int _inStock;
         private int _players;
         private int _yearReleased;
-        private double _price;
+        private int _price;
 
         // Properties
         public string Name
@@ -61,7 +61,7 @@ namespace GenSpil
         }
 
         // Constructor
-        public Item(string name, string version, string condition, int inStock, int players, int yearReleased, double price)
+        public Item(string name, string version, string condition, int inStock, int players, int yearReleased, int price)
         {
             _name = name;
             _version = version;
@@ -72,15 +72,17 @@ namespace GenSpil
             _price = price;
         }
 
+        //
         public static List<Item> Games = new List<Item>();
 
-        public static void AddGame()
+        // Methods
+        public static void AddItem()
         {
-            Console.WriteLine("Indtast spilnavn: ");
+            Console.WriteLine("Indtast spillets navn: ");
             string name = Console.ReadLine();
-            Console.WriteLine("Indtast version: ");
+            Console.WriteLine("Indtast spillets version: ");
             string version = Console.ReadLine();
-            Console.WriteLine("Indtast stand: ");
+            Console.WriteLine("Indtast spillets stand: ");
             string condition = Console.ReadLine();
             Console.WriteLine("Indtast antal på lager: ");
             int inStock = Convert.ToInt32(Console.ReadLine());
@@ -89,13 +91,11 @@ namespace GenSpil
             Console.WriteLine("Indtast udgivelsesår: ");
             int yearReleased = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Indtast pris: ");
-            double price = Convert.ToDouble(Console.ReadLine());
+            int price = Convert.ToInt32(Console.ReadLine());
             Games.Add(new Item(name, version, condition, inStock, players, yearReleased, price));
         }
-        public static void EditGame()
-        {
-        }
-        public static void RemoveGame()
+
+        public static void RemoveItem()
         {
         }
 

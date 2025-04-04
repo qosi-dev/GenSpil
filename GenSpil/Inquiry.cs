@@ -58,7 +58,8 @@ namespace GenSpil
             _requestedBy = requestedBy;
         }
 
-            public static void CreateInquiryIfNeeded()
+        // Methods
+        public static void CreateInquiryIfNeeded()
         {
             Console.WriteLine("Indtast navn på spillet: ");
             string itemName = Console.ReadLine();
