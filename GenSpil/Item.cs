@@ -17,6 +17,7 @@ namespace GenSpil
         private int _players;
         private int _yearReleased;
         private int _price;
+        private string _itemStatus;
 
         // Properties
         public string Name
@@ -59,17 +60,24 @@ namespace GenSpil
             get { return _price; }
             set { _price = value; }
         }
+        public string ItemStatus
+        {
+            get { return _itemStatus; }
+            set { _itemStatus = value; }
+        }
 
         // Constructor
-        public Item(string name, string version, string condition, int inStock, int players, int yearReleased, int price)
+        public Item(string name, string version, int itemId, string condition, int inStock, int players, int yearReleased, int price, string itemStatus)
         {
             _name = name;
             _version = version;
+            _itemId = ItemId;
             _condition = condition;
             _inStock = inStock;
             _players = players;
             _yearReleased = yearReleased;
             _price = price;
+            _itemStatus = itemStatus;
         }
 
         //
@@ -83,6 +91,8 @@ namespace GenSpil
             Console.WriteLine("Indtast spillets version: ");
             string version = Console.ReadLine();
             Console.WriteLine("Indtast spillets stand: ");
+            int itemId = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Indtast spillets stand: ");
             string condition = Console.ReadLine();
             Console.WriteLine("Indtast antal på lager: ");
             int inStock = Convert.ToInt32(Console.ReadLine());
@@ -92,11 +102,27 @@ namespace GenSpil
             int yearReleased = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Indtast pris: ");
             int price = Convert.ToInt32(Console.ReadLine());
-            Games.Add(new Item(name, version, condition, inStock, players, yearReleased, price));
+            Console.WriteLine("Indtast status: ");
+            string itemStatus = Console.ReadLine();
+            Games.Add(new Item(name, version, itemId, condition, inStock, players, yearReleased, price, itemStatus));
         }
 
         public static void RemoveItem()
         {
+            if (Games.Count == 0)
+            {
+                Console.WriteLine("Ingen spil tilgængelige.");
+                return;
+            }
+            else
+            {
+                foreach (Item game in Games)
+                {
+                    Console.WriteLine($"Spil: {game.Name}, Version: {game.Version}, ID: {game.ItemId}, Tilstand: {game.Condition}, På lager: {game.InStock}, Antal Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}");
+                }
+                Console.WriteLine("Hvilket spil vil du fjerne: ");
+                Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
+            }
         }
 
     }
