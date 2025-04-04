@@ -19,10 +19,11 @@ namespace GenSpil
             Console.WriteLine("1. Tilføj spil");
             Console.WriteLine("2. Spiloversigt");
             Console.WriteLine("3. Fjern spil");
-            Console.WriteLine("4. Tilføj Forespørgsel");
-            Console.WriteLine("5. Forespørgselsoversigt");
-            Console.WriteLine("6. Slet Forespørgsel");
-            Console.WriteLine("7. Afslut");
+            Console.WriteLine("4. Søg spil");
+            Console.WriteLine("5. Opret forespørgsel");
+            Console.WriteLine("6. Forespørgselsoversigt");
+            Console.WriteLine("7. Slet Forespørgsel");
+            Console.WriteLine("8. Afslut");
 
             int choice = Convert.ToInt32(Console.ReadLine());
             int subChoice;
@@ -41,12 +42,15 @@ namespace GenSpil
                     Storage.SearchGame();
                     break;
                 case 5:
-
+                    // Storage.AddInquiry() ??;
                     break;
                 case 6:
-
+                    // Storage.ViewInquiry() ??;
                     break;
                 case 7:
+                    // Storage.RemoveInquiry() ??;
+                    break;
+                case 8:
                     Environment.Exit(0);
                     break;
 
