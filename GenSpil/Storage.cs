@@ -26,7 +26,7 @@ namespace GenSpil
             Console.WriteLine("Indtast udgivelsesår: ");
             int yearReleased = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Indtast pris: ");
-            double price = Convert.ToDouble(Console.ReadLine());
+            int price = Convert.ToInt32(Console.ReadLine());
             items.Add(new Item(name, version, condition, inStock, players, yearReleased, price));
 
         }
@@ -40,7 +40,7 @@ namespace GenSpil
         }
         public void SearchItem()
         {
-
+            
         }
         public void GetItemStatus()
         {
