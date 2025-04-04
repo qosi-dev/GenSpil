@@ -9,15 +9,23 @@ namespace GenSpil
     internal class Inquiry
     {
         // Fields
-        private string _name;
+        private int _inquiryId;
+        private string _itemName;
         private string _version;
         private string _condition;
+        private string _requestedBy;
+        private DateTime _inquiryDate;
 
         // Properties
-        public string Name
+        public int InquiryId
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _inquiryId; }
+            set { _inquiryId = value; }
+        }
+        public string ItemName
+        {
+            get { return _itemName; }
+            set { _itemName = value; }
         }
         public string Version
         {
@@ -29,34 +37,39 @@ namespace GenSpil
             get { return _condition; }
             set { _condition = value; }
         }
-
-        // Constructor
-        public Inquiry(string name, string version, string condition)
+        public string RequestedBy
         {
-            _name = name;
+            get { return _requestedBy; }
+            set { _requestedBy = value; }
+        }
+        public DateTime InquiryDate
+        {
+            get { return _inquiryDate; }
+            set { _inquiryDate = value; }
+        }
+        
+        // Constructor
+        public Inquiry(string itemName, string version, string condition, string requestedBy, DateTime inquiryDate)
+        {
+            _itemName = itemName;
             _version = version;
             _condition = condition;
+            _inquiryDate = inquiryDate;
+            _requestedBy = requestedBy;
         }
 
-        public static List<Inquiry> Inquiries = new List<Inquiry>();
-
-
-        public static void AddInquiry()
+            public static void CreateInquiryIfNeeded()
         {
-            Console.WriteLine("Indtast navn: ");
-            string name = Console.ReadLine();
+            Console.WriteLine("Indtast navn på spillet: ");
+            string itemName = Console.ReadLine();
             Console.WriteLine("Indtast version: ");
             string version = Console.ReadLine();
-            Console.WriteLine("Indtast stand: ");
+            Console.WriteLine("Hvad er spillets tilstand: ");
             string condition = Console.ReadLine();
-            Inquiry inquiry = new Inquiry(name, version, condition);
-            Inquiries.Add(inquiry);
-        }
-        public static void EditInquiry()
-        {
-        }
-        public static void RemoveEmployee()
-        {
+            string requestedBy = Console.ReadLine();
+            DateTime inquiryDate = DateTime.Now;
+            Inquiry inquiry = new Inquiry(itemName, version, condition, requestedBy, inquiryDate);
+            Storage.inquiries.Add(inquiry);
         }
     }
 }

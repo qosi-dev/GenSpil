@@ -8,11 +8,14 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GenSpil
 {
-    internal class Kunde
+    internal class Customer
     {
         // Fields
         private string _name;
         private int _customerId;
+        private string _address;
+        private string _postalCode;
+        private string _city;
         private string _phoneNumber;
         private string _email;
 
@@ -28,6 +31,22 @@ namespace GenSpil
             get { return _customerId; }
             set { _customerId = value; }
         }
+        
+        public string Address
+        {
+            get { return _address; }
+            set { _address = value; }
+        }
+        public string PostalCode
+        {
+            get { return _postalCode; }
+            set { _postalCode = value; }
+        }
+        public string City
+        {
+            get { return _city; }
+            set { _city = value; }
+        }
         public string PhoneNumber
         {
             get { return _phoneNumber; }
@@ -40,33 +59,18 @@ namespace GenSpil
         }
 
         // Constructor
-        public Kunde(string name, int customerId, string phoneNumber, string email)
+        public Customer(string name, int customerId, string phoneNumber, string email)
         {
             _name = name;
             _customerId = customerId;
             _phoneNumber = phoneNumber;
             _email = email;
         }
-        public static List<Kunde> Customers = new List<Kunde>();
+        public static List<Customer> Customers = new List<Customer>();
 
-        public static void AddCustomer()
+        public static void GetCustomerId()
         {
-            Console.WriteLine("Indtast navn: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Indtast kunde ID: ");
-            int customerId = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Indtast telefonnummer: ");
-            string phoneNumber = Console.ReadLine();
-            Console.WriteLine("Indtast email: ");
-            string email = Console.ReadLine();
-            Customers.Add(new Kunde(name, customerId, phoneNumber, email));
-            Console.WriteLine("Kunde tilføjet!");
-        }
-        public static void EditCustomer()
-        {
-        }
-        public static void RemoveCustomer()
-        {
+            
         }
     }
 }

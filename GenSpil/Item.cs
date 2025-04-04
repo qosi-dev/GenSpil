@@ -11,6 +11,7 @@ namespace GenSpil
         // Fields
         private string _name;
         private string _version;
+        private int _itemId;
         private string _condition;
         private int _inStock;
         private int _players;
@@ -27,6 +28,11 @@ namespace GenSpil
         {
             get { return _version; }
             set { _version = value; }
+        }
+        public int ItemId
+        {
+            get { return _itemId; }
+            set { _itemId = value; }
         }
         public string Condition
         {
@@ -48,7 +54,7 @@ namespace GenSpil
             get { return _yearReleased; }
             set { _yearReleased = value; }
         }
-        public double Price
+        public int Price
         {
             get { return _price; }
             set { _price = value; }
