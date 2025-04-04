@@ -13,6 +13,21 @@ namespace GenSpil
 
         public void AddItem()
         {
+            Console.WriteLine("Indtast spilnavn: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Indtast version: ");
+            string version = Console.ReadLine();
+            Console.WriteLine("Indtast stand: ");
+            string condition = Console.ReadLine();
+            Console.WriteLine("Indtast antal på lager: ");
+            int inStock = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Indtast antal spillere: ");
+            int players = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Indtast udgivelsesår: ");
+            int yearReleased = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Indtast pris: ");
+            double price = Convert.ToDouble(Console.ReadLine());
+            items.Add(new Item(name, version, condition, inStock, players, yearReleased, price));
 
         }
         public void RemoveItem()
