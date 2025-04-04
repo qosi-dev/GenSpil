@@ -16,58 +16,142 @@ namespace GenSpil
         public static void MainMenu()
         {
             Console.WriteLine("Vælg undermenu:");
-            Console.WriteLine("1. Tilføj spil");
-            Console.WriteLine("2. Spiloversigt");
-            Console.WriteLine("3. Fjern spil");
-            Console.WriteLine("4. Søg spil");
-            Console.WriteLine("5. Opret forespørgsel");
-            Console.WriteLine("6. Forespørgselsoversigt");
-            Console.WriteLine("7. Slet Forespørgsel");
-            Console.WriteLine("8. Afslut");
+            Console.WriteLine("1. Spil");
+            Console.WriteLine("2. Søg spil");
+            Console.WriteLine("3. Forespørgsler");
+            Console.WriteLine("4. Kunder");
+            Console.WriteLine("5. Søg kunder");
+            Console.WriteLine("6. Afslut");
 
             int choice = Convert.ToInt32(Console.ReadLine());
-            int subChoice;
+            bool subChoice = false;
             switch (choice)
             {
                 case 1:
-                    Storage.AddItem();
+                if(subChoice == false)
+                    {
+                        subChoice = true;
+                        while (subChoice = true)
+                        {
+                            Console.WriteLine("1. Tilføj spil");
+                            Console.WriteLine("2. Fjern spil");
+                            Console.WriteLine("3. Spiloversigt");
+                            Console.WriteLine("4. Tilbage");
+                            int i = Convert.ToInt32(Console.ReadLine());
+                            if (i == 1)
+                            {
+                                Storage.AddItem();
+                            }
+                            else if (i == 2)
+                            {
+                                Storage.RemoveItem();
+                            }
+                            else if (i == 3)
+                            {
+                                foreach (Item game in Storage.Games)
+                                {
+                                    Console.WriteLine($"Navn: {game.Name}, Version: {game.Version}, Id: {game.ItemId}, Stand: {game.Condition}, Antal på lager: {game.InStock}, Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}, Status: {game.ItemStatus} ");
+                                }
+                            }
+                            else if (i == 4)
+                            {
+                                subChoice = false;
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+
+                        }
+                    }
                     break;
                 case 2:
-                    Storage.ViewStorage();
-                    break;
-                case 3:
-                    Storage.RemoveItem();
-                    break;
-                case 4:
                     Storage.SearchGame();
                     break;
+                case 3:
+                    if (subChoice == false)
+                    {
+                        subChoice = true;
+                        while (subChoice = true)
+                        {
+                            Console.WriteLine("1. Opret forespørgsel");
+                            Console.WriteLine("2. Slet forespørgsel");
+                            Console.WriteLine("3. Forespørgselsoversigt");
+                            Console.WriteLine("4. Tilbage");
+                            int i = Convert.ToInt32(Console.ReadLine());
+                            if (i == 1)
+                            {
+                                Inquiry.CreateInquiryIfNeeded();
+                            }
+                            else if (i == 2)
+                            {
+                                Inquiry.RemoveInquiry();
+                            }
+                            else if (i == 3)
+                            {
+                                foreach (Inquiry inquiry in Storage.inquiries)
+                                {
+                                    Console.WriteLine($"Navn: {inquiry.ItemName}, Version: {inquiry.Version}, Id: {inquiry.InquiryId}, Stand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
+                                }
+                            }
+                            else if (i == 4)
+                            {
+                                subChoice = false;
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                case 4:
+                    if (subChoice == false)
+                    {
+                        subChoice = true;
+                        while (subChoice = true)
+                        {
+                            Console.WriteLine("1. Opret kunde");
+                            Console.WriteLine("2. Slet kunde");
+                            Console.WriteLine("3. Kundeoversigt");
+                            Console.WriteLine("4. Tilbage");
+                            int i = Convert.ToInt32(Console.ReadLine());
+                            if (i == 1)
+                            {
+                                Customer.CreateCustomer();
+                            }
+                            else if (i == 2)
+                            {
+                                Customer.RemoveCustomer();
+                            }
+                            else if (i == 3)
+                            {
+                                Customer.GetCustomerDetails();
+                            }
+                            else if (i == 4)
+                            {
+                                subChoice = false;
+                                break;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    break;
                 case 5:
-                    // Storage.AddInquiry() ??;
+                    Customer.SearchCustomers();
                     break;
                 case 6:
-                    // Storage.ViewInquiry() ??;
-                    break;
-                case 7:
-                    // Storage.RemoveInquiry() ??;
-                    break;
-                case 8:
                     Environment.Exit(0);
                     break;
 
                 default:
                     break;
             }
-        }
-
-        public static void Games()
-        {
-        }
-        public static void Customers()
-        {
-
-        }
-        public static void Employees()
-        {
         }
     }
 }
