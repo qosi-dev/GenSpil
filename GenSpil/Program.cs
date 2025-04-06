@@ -42,13 +42,13 @@ namespace GenSpil
                     Storage.SearchGame();
                     break;
                 case 5:
-                    // Storage.AddInquiry() ??;
+                    Inquiry.CreateInquiryIfNeeded();
                     break;
                 case 6:
-                    // Storage.ViewInquiry() ??;
+                    Inquiry.ViewInquiry();
                     break;
                 case 7:
-                    // Storage.RemoveInquiry() ??;
+                    Inquiry.RemoveInquiry();
                     break;
                 case 8:
                     Environment.Exit(0);
