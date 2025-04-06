@@ -67,10 +67,58 @@ namespace GenSpil
             string version = Console.ReadLine();
             Console.WriteLine("Hvad er spillets tilstand: ");
             string condition = Console.ReadLine();
+            Console.WriteLine("Hvem anmoder om det: ");
             string requestedBy = Console.ReadLine();
             DateTime inquiryDate = DateTime.Now;
             Inquiry inquiry = new Inquiry(itemName, version, condition, requestedBy, inquiryDate);
             Storage.inquiries.Add(inquiry);
+            var highestId = Storage.inquiries.Count > 0 ? Storage.inquiries.Max(i => i.InquiryId) : 0;
+            inquiry.InquiryId = highestId + 1;
+            Console.WriteLine($"Forespørgsel oprettet med ID: {inquiry.InquiryId}");
         }
+
+        public static void ViewInquiry()
+        {
+            if (Storage.inquiries.Count == 0)
+            {
+                Console.WriteLine("Ingen forespørgsler tilgængelige.");
+                return;
+            }
+            else
+            {
+                foreach (Inquiry inquiry in Storage.inquiries)
+                {
+                    Console.WriteLine($"Forespørgsel ID: {inquiry.InquiryId}, Spilnavn: {inquiry.ItemName}, Version: {inquiry.Version}, Tilstand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
+                }
+            }
+        }
+        public static void RemoveInquiry()
+        {
+            if (Storage.inquiries.Count == 0)
+            {
+                Console.WriteLine("Ingen forespørgsler tilgængelige.");
+                return;
+            }
+            else
+            {
+                foreach (Inquiry inquiry in Storage.inquiries)
+                {
+                    Console.WriteLine($"Forespørgsel ID: {inquiry.InquiryId}, Spilnavn: {inquiry.ItemName}, Version: {inquiry.Version}, Tilstand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
+                }
+                Console.WriteLine("Hvilken forespørgsel vil du fjerne (angiv ID): ");
+                int id = Convert.ToInt32(Console.ReadLine());
+                var inquiryToRemove = Storage.inquiries.FirstOrDefault(i => i.InquiryId == id);
+                if (inquiryToRemove != null)
+                {
+                    Storage.inquiries.Remove(inquiryToRemove);
+                    Console.WriteLine($"Forespørgsel med ID {id} er fjernet.");
+                }
+                else
+                {
+                    Console.WriteLine("Ingen forespørgsel fundet med det angivne ID.");
+                }
+            }
+        }
+
     }
 }
