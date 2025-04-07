@@ -77,7 +77,7 @@ namespace GenSpil
         }
                 
         //
-        public static List<Customer> Customers = new List<Customer>();
+        public static List<Customer> Customers = new List<Customer>(); // Skal nok slettes da det giver mere mening at anvende den der er i inquiries
         // Methods
         public static void CreateCustomer()
         {
@@ -118,12 +118,11 @@ namespace GenSpil
         }
         public static void GetCustomerDetails()
         {
-            int index = 0;
-            
+            int i = 1;
             foreach (Customer customer in Customers)
             {
-                index++;
-                Console.WriteLine($"{index}. Navn: {customer.Name}, ID: {customer.CustomerId}, Adresse: {customer.Address}, Postnr.: {customer.PostalCode}, By: {customer.City}, Telefon: {customer.PhoneNumber}, Email: {customer.Email}, Oprettet: {customer.CustomerCreated}");
+                Console.WriteLine($"{i}. Navn: {customer.Name}, ID: {customer.CustomerId}, Adresse: {customer.Address}, Postnr.: {customer.PostalCode}, By: {customer.City}, Telefon: {customer.PhoneNumber}, Email: {customer.Email}, Oprettet: {customer.CustomerCreated}");
+                i++;
             }
         }
         public static void SearchCustomers()
@@ -184,6 +183,11 @@ namespace GenSpil
                 }
             }
             
+        }
+        // Override af ToString() for at vise kundeoplysninger
+        public override string ToString()
+        {
+            return $"Navn: {Name}, ID: {CustomerId}, Telefon: {PhoneNumber}";
         }
     }
 }

@@ -68,13 +68,13 @@ namespace GenSpil
         }
 
         // Constructor
-        public Item(string name, string version, int itemId, string condition, int inStock, int players, int yearReleased, int price, string itemStatus)
+        public Item(string name, string version, int itemId, string condition, int players, int yearReleased, int price, string itemStatus)
         {
             _name = name;
             _version = version;
             _itemId = itemId;
             _condition = condition;
-            _inStock = inStock;
+            //_inStock = inStock;
             _players = players;
             _yearReleased = yearReleased;
             _price = price;
@@ -82,40 +82,13 @@ namespace GenSpil
         }
 
         // Methods
-        public static void ViewItem(int id)
-        {
-            Console.WriteLine("Indtast spillets id: ");
-            id = Convert.ToInt32(Console.ReadLine());
-            var itemFound = Storage.Games.Where(game => game.ItemId == id).ToList();
-            if (itemFound.Count > 0)
-            {
-                Console.WriteLine("Spil fundet!");
-                foreach (Item game in itemFound)
-                {
-                    Console.WriteLine($"Spil: {game.Name}, Version: {game.Version}, ID: {game.ItemId}, Tilstand: {game.Condition}, På lager: {game.InStock}, Antal Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Spillet kunne ikke findes.");
-            }
-        }
         public static void ViewItem(string name)
         {
-            Console.WriteLine("Indtast spillets id: ");
-            name = Console.ReadLine();
-            var itemFound = Storage.Games.Where(game => game.Name == name).ToList();
-            if (itemFound.Count > 0)
+            Console.WriteLine("Spil fundet!");
+            int i = 1;
+            foreach (Item game in Storage.Games)
             {
-                Console.WriteLine("Spil fundet!");
-                foreach (Item game in itemFound)
-                {
-                    Console.WriteLine($"Spil: {game.Name}, Version: {game.Version}, ID: {game.ItemId}, Tilstand: {game.Condition}, På lager: {game.InStock}, Antal Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Spillet kunne ikke findes. Har du indtastet de korrekte oplysninger?");
+                Console.WriteLine($"{i}. Spil: {game.Name}, Version: {game.Version}, ID: {game.ItemId}, Tilstand: {game.Condition}, På lager: {game.InStock}, Antal Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}");
             }
         }
 
