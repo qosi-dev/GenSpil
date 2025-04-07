@@ -15,13 +15,12 @@ namespace GenSpil
         }
         public static void MainMenu()
         {
-            Console.WriteLine("Vælg undermenu:");
+            Console.WriteLine("Vælg:");
             Console.WriteLine("1. Spil");
             Console.WriteLine("2. Søg spil");
             Console.WriteLine("3. Forespørgsler");
             Console.WriteLine("4. Kunder");
-            Console.WriteLine("5. Søg kunder");
-            Console.WriteLine("6. Afslut");
+            Console.WriteLine("5. Afslut");
 
             int choice = Convert.ToInt32(Console.ReadLine());
             bool subChoice = false;
@@ -90,10 +89,7 @@ namespace GenSpil
                             }
                             else if (i == 3)
                             {
-                                foreach (Inquiry inquiry in Storage.inquiries)
-                                {
-                                    Console.WriteLine($"Navn: {inquiry.ItemName}, Version: {inquiry.Version}, Id: {inquiry.InquiryId}, Stand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
-                                }
+                                Inquiry.ViewInquiries();
                             }
                             else if (i == 4)
                             {
@@ -116,7 +112,8 @@ namespace GenSpil
                             Console.WriteLine("1. Opret kunde");
                             Console.WriteLine("2. Slet kunde");
                             Console.WriteLine("3. Kundeoversigt");
-                            Console.WriteLine("4. Tilbage");
+                            Console.WriteLine("4. Søg kunde");
+                            Console.WriteLine("5. Tilbage");
                             int i = Convert.ToInt32(Console.ReadLine());
                             if (i == 1)
                             {
@@ -132,20 +129,18 @@ namespace GenSpil
                             }
                             else if (i == 4)
                             {
-                                subChoice = false;
-                                break;
+                                Customer.SearchCustomers();
+                                
                             }
-                            else
+                            else if (i == 5)
                             {
+                                subChoice = false;
                                 break;
                             }
                         }
                     }
                     break;
                 case 5:
-                    Customer.SearchCustomers();
-                    break;
-                case 6:
                     Environment.Exit(0);
                     break;
 

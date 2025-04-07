@@ -152,10 +152,18 @@ namespace GenSpil
             {
                 foreach (Inquiry inquiry in Storage.inquiries)
                 {
-                    Console.WriteLine($"Navn: {inquiry.ItemName}, Version: {inquiry.Version}, Id: {inquiry.InquiryId}, Stand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
+                    ViewInquiries();
                 }
                 Console.WriteLine("Hvilket spil vil du fjerne(1..): ");
                 Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
+            }
+        }
+        public static void ViewInquiries()
+        {
+            foreach (Inquiry inquiry in Storage.inquiries)
+            {
+                // Anmodet af: {inquiry.RequestedBy} Virker ikke! -> GenSpil.Customer i stedet for kunde
+                Console.WriteLine($"Navn: {inquiry.ItemName}, Version: {inquiry.Version}, Id: {inquiry.InquiryId}, Stand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
             }
         }
     }
