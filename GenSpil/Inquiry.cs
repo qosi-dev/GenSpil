@@ -81,7 +81,6 @@ namespace GenSpil
             }
             else
             {
-                Storage.inquiries.Sort();
                 foreach (Inquiry inquiry in Storage.inquiries)
                 {
                     Console.WriteLine($"Navn: {inquiry.ItemName}, Version: {inquiry.Version}, Id: {inquiry.InquiryId}, Stand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
