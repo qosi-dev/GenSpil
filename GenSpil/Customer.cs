@@ -141,8 +141,8 @@ namespace GenSpil
                     {
                         Console.WriteLine("Indtast kundens navn: ");
                         string name = Console.ReadLine();
-                        var itemFound = Customers.Where(customer => customer.Name == name).ToList();
-                        if (itemFound.Count > 0)
+                        var itemFound = Customers.Where(customer => customer.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
+                        if (!itemFound.Any())
                         {
                             foreach (Customer customer in itemFound)
                             {
