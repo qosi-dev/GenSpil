@@ -75,8 +75,6 @@ namespace GenSpil
             _email = email;
             _customerCreated = CustomerCreated;
         }
-                
-        //
         public static List<Customer> Customers = new List<Customer>();
         // Methods
         public static void CreateCustomer()
@@ -106,6 +104,7 @@ namespace GenSpil
             DateTime CustomerCreated = DateTime.Now;
 
             Customers.Add(new Customer(name, customerId, address, postalCode, city, phoneNumber, email, CustomerCreated));
+            Console.WriteLine("Kunde oprettet!");
         }
 
         public static void RemoveCustomer()
@@ -121,6 +120,7 @@ namespace GenSpil
                     GetCustomerDetails();
                     Console.WriteLine("Hvilken kunde vil du fjerne: ");
                     Customers.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1); // input 0 crash system
+                    Console.WriteLine("Kunde fjernet!");
                 }
             }
         }

@@ -160,9 +160,11 @@ namespace GenSpil
         }
         public static void ViewInquiries()
         {
+            int i = 1;
             foreach (Inquiry inquiry in Storage.inquiries)
             {
                 Console.WriteLine($"Navn: {inquiry.ItemName}, Version: {inquiry.Version}, Id: {inquiry.InquiryId}, Stand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
+                i++;
             }
         }
     }

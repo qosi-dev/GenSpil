@@ -47,10 +47,7 @@ namespace GenSpil
                             }
                             else if (i == 3)
                             {
-                                foreach (Item game in Storage.Games)
-                                {
-                                    Console.WriteLine($"Navn: {game.Name}, Version: {game.Version}, Id: {game.ItemId}, Stand: {game.Condition}, Antal på lager: {game.InStock}, Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}, Status: {game.ItemStatus} ");
-                                }
+                                Storage.ViewStorage();
                             }
                             else if (i == 4)
                             {

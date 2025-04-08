@@ -14,7 +14,6 @@ namespace GenSpil
         private string _version;
         private int _itemId;
         private string _condition;
-        private int _inStock;
         private int _players;
         private int _yearReleased;
         private int _price;
@@ -40,11 +39,6 @@ namespace GenSpil
         {
             get { return _condition; }
             set { _condition = value; }
-        }
-        public int InStock
-        {
-            get { return _inStock; }
-            set { _inStock = value; }
         }
         public int Players
         {
@@ -74,7 +68,6 @@ namespace GenSpil
             _version = version;
             _itemId = itemId;
             _condition = condition;
-            //_inStock = inStock;
             _players = players;
             _yearReleased = yearReleased;
             _price = price;
@@ -87,10 +80,9 @@ namespace GenSpil
             int i = 1;
             foreach (Item game in Storage.Games)
             {
-                Console.WriteLine($"{i}. Spil: {game.Name}, Version: {game.Version}, ID: {game.ItemId}, Tilstand: {game.Condition}, På lager: {game.InStock}, Antal Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}");
+                Console.WriteLine($"{i}. Spil: {game.Name}, Version: {game.Version}, ID: {game.ItemId}, Tilstand: {game.Condition}, Antal Spillere: {game.Players}, Udgivelsesår: {game.YearReleased}, Pris: {game.Price}, Status: {game.ItemStatus}");
+                i++;
             }
         }
-
-
     }
 }
