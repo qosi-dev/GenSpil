@@ -77,7 +77,7 @@ namespace GenSpil
         }
                 
         //
-        public static List<Customer> Customers = new List<Customer>(); // Skal nok slettes da det giver mere mening at anvende den der er i inquiries
+        public static List<Customer> Customers = new List<Customer>();
         // Methods
         public static void CreateCustomer()
         {

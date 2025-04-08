@@ -162,7 +162,6 @@ namespace GenSpil
         {
             foreach (Inquiry inquiry in Storage.inquiries)
             {
-                // Anmodet af: {inquiry.RequestedBy} Virker ikke! -> GenSpil.Customer i stedet for kunde
                 Console.WriteLine($"Navn: {inquiry.ItemName}, Version: {inquiry.Version}, Id: {inquiry.InquiryId}, Stand: {inquiry.Condition}, Anmodet af: {inquiry.RequestedBy}, Dato: {inquiry.InquiryDate}");
             }
         }
