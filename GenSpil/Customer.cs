@@ -83,8 +83,16 @@ namespace GenSpil
         {
             Console.WriteLine("Indtast kundens navn: ");
             string name = Console.ReadLine();
-            Console.WriteLine("Indtast kundens ID: ");
-            int customerId = Convert.ToInt32(Console.ReadLine());
+            //Automatisk tildeling af itemId
+            int customerId = 0;
+            if (Customers.Count == 0)
+            {
+                customerId = 1;
+            }
+            else
+            {
+                customerId = Customers.Max(customer => customer.CustomerId) + 1;
+            }
             Console.WriteLine("Indtast kundens addresse: ");
             string address = Console.ReadLine();
             Console.WriteLine("Indtast kundens postnr.: ");
@@ -121,7 +129,7 @@ namespace GenSpil
             int i = 1;
             foreach (Customer customer in Customers)
             {
-                Console.WriteLine($"{i}. Navn: {customer.Name}, ID: {customer.CustomerId}, Adresse: {customer.Address}, Postnr.: {customer.PostalCode}, By: {customer.City}, Telefon: {customer.PhoneNumber}, Email: {customer.Email}, Oprettet: {customer.CustomerCreated}");
+                Console.WriteLine($"{i}. Navn: {customer.Name}, Id: {customer.CustomerId}, Adresse: {customer.Address}, Postnr.: {customer.PostalCode}, By: {customer.City}, Telefon: {customer.PhoneNumber}, Email: {customer.Email}, Oprettet: {customer.CustomerCreated}");
                 i++;
             }
         }
@@ -141,12 +149,12 @@ namespace GenSpil
                     {
                         Console.WriteLine("Indtast kundens navn: ");
                         string name = Console.ReadLine();
-                        var itemFound = Customers.Where(customer => customer.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
-                        if (!itemFound.Any())
+                        var customerFound = Customers.Where(customer => !string.IsNullOrEmpty(customer.Name) && customer.Name.Contains(name, StringComparison.OrdinalIgnoreCase));
+                        if (customerFound.Any())
                         {
-                            foreach (Customer customer in itemFound)
+                            foreach (Customer customer in customerFound)
                             {
-                                GetCustomerDetails();
+                                Console.WriteLine($"Navn: {customer.Name}, ID: {customer.CustomerId}, Adresse: {customer.Address}, Postnr.: {customer.PostalCode}, By: {customer.City}, Telefon: {customer.PhoneNumber}, Email: {customer.Email}, Oprettet: {customer.CustomerCreated}");
                             }
                         }
                         else
@@ -158,13 +166,10 @@ namespace GenSpil
                     {
                         Console.WriteLine("Indtast kundens id: ");
                         int id = Convert.ToInt32(Console.ReadLine());
-                        var itemFound = Customers.Where(customer => customer.CustomerId == id).ToList();
-                        if (itemFound.Count > 0)
+                        var customerFound = Customers.FirstOrDefault(customer => customer.CustomerId == id);
+                        if (customerFound != null)
                         {
-                            foreach (Customer customer in itemFound)
-                            {
-                                GetCustomerDetails();
-                            }
+                            Console.WriteLine($"Navn: {customerFound.Name}, Id: {customerFound.CustomerId}, Adresse: {customerFound.Address}, Postnr.: {customerFound.PostalCode}, By: {customerFound.City}, Telefon: {customerFound.PhoneNumber}, Email: {customerFound.Email}, Oprettet: {customerFound.CustomerCreated}");
                         }
                         else
                         {
@@ -182,7 +187,7 @@ namespace GenSpil
                     }
                 }
             }
-            
+
         }
         // Override af ToString() for at vise kundeoplysninger
         public override string ToString()
