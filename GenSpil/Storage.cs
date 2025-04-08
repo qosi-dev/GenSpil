@@ -67,7 +67,7 @@ namespace GenSpil
                 Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
             }
         }
-        public static void SearchGame() // Mangler at tage højde for dele af det søgte navn  
+        public static void SearchGame()  
         {
             Console.WriteLine("Indtast spillets navn: ");
             string name = Console.ReadLine();
