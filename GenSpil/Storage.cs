@@ -9,7 +9,6 @@ namespace GenSpil
 {
     internal class Storage
     {
-
         public static List<Item> Games = new List<Item>();
         public static List<Inquiry> inquiries = new List<Inquiry>();
 
@@ -51,7 +50,6 @@ namespace GenSpil
             Console.Write("Indtast status: "); // ??? Hvad var meningen igen ???
             string itemStatus = Console.ReadLine();
             Storage.Games.Add(new Item(name, version, itemId, condition, players, yearReleased, price, itemStatus));
-            //itemID++;
         }
         public static void RemoveItem()
         {
@@ -63,7 +61,7 @@ namespace GenSpil
             else
             {
                 SearchGame();
-                Console.WriteLine("Hvilket spil vil du fjerne: "); // Spillet bør søges frem før mulighed for at slette
+                Console.WriteLine("Hvilket spil vil du fjerne: ");
                 Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
             }
         }
