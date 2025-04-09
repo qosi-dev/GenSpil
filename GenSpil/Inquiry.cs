@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GenSpil
 {
-    internal class Inquiry
+    public class Inquiry
     {
         // Statisk felt til automatisk ID-tildeling
         private static int _nextInquiryId = 1;

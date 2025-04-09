@@ -7,7 +7,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GenSpil
 {
-    internal class Storage
+    public class Storage
     {
         public static List<Item> Games = new List<Item>();
         public static List<Inquiry> inquiries = new List<Inquiry>();

@@ -8,7 +8,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace GenSpil
 {
-    internal class Customer
+    public class Customer
     {
         // Fields
         private string _name;
