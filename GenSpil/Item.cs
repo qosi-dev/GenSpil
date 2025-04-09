@@ -77,6 +77,7 @@ namespace GenSpil
         // Methods
         public static void ViewItem(string name)
         {
+            
             int i = 1;
             foreach (Item game in Storage.Games)
             {

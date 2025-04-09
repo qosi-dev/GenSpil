@@ -105,6 +105,7 @@ namespace GenSpil
 
             Customers.Add(new Customer(name, customerId, address, postalCode, city, phoneNumber, email, CustomerCreated));
             Console.WriteLine("Kunde oprettet!");
+            FileManager.SaveCustomers();
         }
 
         public static void RemoveCustomer()
@@ -122,10 +123,12 @@ namespace GenSpil
                     Customers.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1); // input 0 crash system
                     Console.WriteLine("Kunde fjernet!");
                 }
+                FileManager.SaveCustomers();
             }
         }
         public static void GetCustomerDetails()
         {
+            FileManager.LoadCustomers();
             int i = 1;
             foreach (Customer customer in Customers)
             {

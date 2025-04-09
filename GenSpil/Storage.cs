@@ -9,11 +9,13 @@ namespace GenSpil
 {
     public class Storage
     {
+        
         public static List<Item> Games = new List<Item>();
         public static List<Inquiry> inquiries = new List<Inquiry>();
 
         public static void AddItem()
         {
+            
             Console.Write("Indtast spillets navn: ");
             string name = Console.ReadLine();
             Console.Write("Indtast spillets version: ");
@@ -61,6 +63,7 @@ namespace GenSpil
             };
             Storage.Games.Add(new Item(name, version, itemId, condition, players, yearReleased, price, itemStatus));
             Console.WriteLine("Spil oprettet!");
+            FileManager.SaveGames();
         }
         public static void RemoveItem()
         {
@@ -75,7 +78,9 @@ namespace GenSpil
                 Console.WriteLine("Hvilket spil vil du fjerne: ");
                 Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
                 Console.WriteLine("Spil Fjernet!");
+                FileManager.SaveGames();
             }
+            
         }
         public static void SearchGame()  
         {
@@ -98,8 +103,10 @@ namespace GenSpil
 
         public static void ViewStorage()
         {
+            FileManager.LoadGames();
             Console.WriteLine("Vælg sortering:");
             Console.WriteLine("1. Alfabetisk" + "\n" + "2. Tilstand" + "\n" + "3. Pris" + "\n" + "4. Status");
+            
             int choice = Convert.ToInt32(Console.ReadLine());
             int i = 1;
             switch (choice)

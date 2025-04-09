@@ -14,7 +14,7 @@ namespace GenSpil
         /// <summary>
         /// Gemmer listerne for spil, forespørgsler og kunder til filer i JSON-format.
         /// </summary>
-        public static void SaveData()
+        public static void SaveGames()
         {
             // Gem spil
             try
@@ -27,7 +27,9 @@ namespace GenSpil
             {
                 Console.WriteLine("Fejl ved lagring af spil: " + ex.Message);
             }
-
+        }
+        public static void SaveInquiries()
+        {
             // Gem forespørgsler
             try
             {
@@ -39,6 +41,9 @@ namespace GenSpil
             {
                 Console.WriteLine("Fejl ved lagring af forespørgsler: " + ex.Message);
             }
+        }
+        public static void SaveCustomers()
+{ 
 
             // Gem kunder
             try
@@ -53,10 +58,11 @@ namespace GenSpil
             }
         }
 
+
         /// <summary>
         /// Indlæser listerne for spil, forespørgsler og kunder fra filer i JSON-format.
         /// </summary>
-        public static void LoadData()
+        public static void LoadGames()
         {
             // Indlæs spil
             if (File.Exists(GamesFile))
@@ -76,7 +82,9 @@ namespace GenSpil
             {
                 Console.WriteLine("Filen " + GamesFile + " findes ikke.");
             }
-
+        }
+            public static void LoadInquiries()
+            {
             // Indlæs forespørgsler
             if (File.Exists(InquiriesFile))
             {
@@ -91,11 +99,14 @@ namespace GenSpil
                     Console.WriteLine("Fejl ved indlæsning af forespørgsler: " + ex.Message);
                 }
             }
+
             else
             {
                 Console.WriteLine("Filen " + InquiriesFile + " findes ikke.");
             }
-
+            }
+        public static void LoadCustomers()
+        { 
             // Indlæs kunder
             if (File.Exists(CustomersFile))
             {
