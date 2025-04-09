@@ -82,6 +82,7 @@ namespace GenSpil
             Storage.inquiries.Add(inquiry);
 
             Console.WriteLine("Inquiry oprettet med ID: " + inquiry.InquiryId);
+            FileManager.SaveInquiries();
         }
 
         // Privat metode, der lader brugeren vælge en eksisterende kunde eller oprette en ny
@@ -106,6 +107,7 @@ namespace GenSpil
                     Console.WriteLine("Ingen eksisterende kunder. Opretter ny kunde.");
                     Customer.CreateCustomer();
                     return Customer.Customers.Last();
+                    
                 }
                 else
                 {
@@ -127,6 +129,7 @@ namespace GenSpil
                         Customer.CreateCustomer();
                         return Customer.Customers.Last();
                     }
+                    
                 }
             }
             else if (choice == 2)
@@ -157,9 +160,11 @@ namespace GenSpil
                 Console.WriteLine("Hvilket spil vil du fjerne(1..): ");
                 Storage.Games.RemoveAt(Convert.ToInt32(Console.ReadLine()) - 1);
             }
+            FileManager.SaveInquiries();
         }
         public static void ViewInquiries()
         {
+            FileManager.LoadInquiries();
             int i = 1;
             foreach (Inquiry inquiry in Storage.inquiries)
             {
